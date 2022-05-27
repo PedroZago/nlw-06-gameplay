@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { FlatList, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-import { SelectedCategory } from '../../components/SelectedCategory';
+import { CategorySelection } from '../../components/CategorySelection';
 import { Appointment, IAppointment } from '../../components/Appointment';
 import { ListDivider } from '../../components/ListDivider';
 import { ListHeader } from '../../components/ListHeader';
 import { ButtonAdd } from '../../components/ButtonAdd';
 import { Profile } from '../../components/Profile';
+import { Background } from '../../components/Background';
 
 import { styles } from './styles';
 
@@ -40,6 +42,8 @@ const data: IAppointment[] = [
 export function Home() {
   const [category, setCategory] = useState('');
 
+  const { navigate } = useNavigation();
+
   const handleSelectedCategory = (categoryId: string) => {
     if (categoryId === category) {
       setCategory('');
@@ -48,14 +52,22 @@ export function Home() {
     }
   };
 
+  const handleAppointmentDetails = () => {
+    navigate('AppointmentDetails');
+  };
+
+  const handleAppointmentCreate = () => {
+    navigate('AppointmentCreate');
+  };
+
   return (
-    <View style={styles.container}>
+    <Background>
       <View style={styles.header}>
         <Profile />
-        <ButtonAdd />
+        <ButtonAdd onPress={handleAppointmentCreate} />
       </View>
 
-      <SelectedCategory
+      <CategorySelection
         selectedCategory={category}
         setSelectedCategory={handleSelectedCategory}
       />
@@ -70,13 +82,16 @@ export function Home() {
           data={data}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <Appointment data={item} />
+            <Appointment
+              data={item}
+              onPress={handleAppointmentDetails}
+            />
           )}
           ItemSeparatorComponent={() => <ListDivider />}
           style={styles.matches}
           showsVerticalScrollIndicator={false}
         />
       </View>
-    </View>
+    </Background>
   );
 }

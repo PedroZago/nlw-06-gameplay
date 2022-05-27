@@ -10,25 +10,40 @@ import { theme } from '../../global/styles/theme';
 type SelectProps = RectButtonProps & {
   title: string;
   icon: React.FC<SvgProps>;
+  hasCheckBox?: boolean;
   checked: boolean;
 }
 
 export function Category({
-  title, icon: Icon, checked = true, ...rest
+  title,
+  icon: Icon,
+  checked = true,
+  hasCheckBox = false,
+  ...rest
 }: SelectProps) {
-  const { secondary80, secondary100 } = theme.colors;
+  const {
+    secondary40, secondary50, secondary70, secondary75,
+  } = theme.colors;
 
   return (
-    <RectButton
-      style={styles.container}
-      {...rest}
-    >
+    <RectButton {...rest}>
       <LinearGradient
         style={styles.container}
-        colors={[secondary80, secondary100]}
+        colors={[
+          secondary50,
+          secondary70,
+        ]}
       >
-        <View style={[styles.content, { opacity: checked ? 1 : 0.4 }]}>
-          <View style={checked ? styles.checked : styles.unchecked} />
+        <LinearGradient
+          style={[
+            styles.content,
+            { opacity: checked ? 1 : 0.5 },
+          ]}
+          colors={[
+            checked ? secondary75 : secondary50,
+            secondary40]}
+        >
+          {hasCheckBox && <View style={checked ? styles.checked : styles.unchecked} />}
 
           <Icon
             width={48}
@@ -38,8 +53,12 @@ export function Category({
           <Text style={styles.title}>
             {title}
           </Text>
-        </View>
+        </LinearGradient>
       </LinearGradient>
     </RectButton>
   );
 }
+
+Category.defaultProps = {
+  hasCheckBox: false,
+};

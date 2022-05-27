@@ -5,12 +5,17 @@ import { Category } from '../Category';
 
 import { styles } from './styles';
 
-type SelectedCategoryProps = {
+type CategorySelectionProps = {
   selectedCategory: string;
   setSelectedCategory: (_categoryId: string) => void;
+  hasCheckBox?: boolean;
 }
 
-export function SelectedCategory({ selectedCategory, setSelectedCategory }: SelectedCategoryProps) {
+export function CategorySelection({
+  selectedCategory,
+  setSelectedCategory,
+  hasCheckBox = false,
+}: CategorySelectionProps) {
   return (
     <ScrollView
       horizontal
@@ -26,9 +31,14 @@ export function SelectedCategory({ selectedCategory, setSelectedCategory }: Sele
             icon={category.icon}
             checked={category.id === selectedCategory}
             onPress={() => setSelectedCategory(category.id)}
+            hasCheckBox={hasCheckBox}
           />
         ))
       }
     </ScrollView>
   );
 }
+
+CategorySelection.defaultProps = {
+  hasCheckBox: false,
+};
