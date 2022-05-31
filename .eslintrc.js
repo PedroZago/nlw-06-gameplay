@@ -30,5 +30,6 @@ module.exports = {
     'react/self-closing-comp': 'off',
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'react/jsx-no-constructed-context-values': 'off',
   },
 };

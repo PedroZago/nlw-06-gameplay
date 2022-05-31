@@ -1,11 +1,9 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { SignIn } from '../screens/SignIn';
 import { Home } from '../screens/Home';
 import { AppointmentDetails } from '../screens/AppointmentDetails';
 import { AppointmentCreate } from '../screens/AppointmentCreate';
-import { Guilds } from '../screens/Guilds';
 
 import { theme } from '../global/styles/theme';
 
@@ -22,11 +20,6 @@ export function AuthRoutes() {
       }}
     >
       <Screen
-        name="SignIn"
-        component={SignIn}
-      />
-
-      <Screen
         name="Home"
         component={Home}
       />
@@ -39,11 +32,6 @@ export function AuthRoutes() {
       <Screen
         name="AppointmentCreate"
         component={AppointmentCreate}
-      />
-
-      <Screen
-        name="Guilds"
-        component={Guilds}
       />
     </Navigator>
   );

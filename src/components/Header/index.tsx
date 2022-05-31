@@ -42,16 +42,14 @@ export function Header({ title, action }: HeaderProps) {
         {title}
       </Text>
 
-      {action
-        && (
-          <View>
-            {action}
-          </View>
-        )}
+      <View style={{ width: 24 }}>
+        {action && action}
+      </View>
+
     </LinearGradient>
   );
 }
 
-// Header.defaultProps = {
-//   action: false;
-// };
+Header.defaultProps = {
+  action: null,
+};

@@ -18,6 +18,12 @@ const guilds: IGuild[] = [
     icon: 'image.png',
     owner: true,
   },
+  {
+    id: '2',
+    name: 'Fortnite',
+    icon: 'image.png',
+    owner: true,
+  },
 ];
 
 export function Guilds({ guildSelected }: GuildsProps) {
@@ -33,7 +39,8 @@ export function Guilds({ guildSelected }: GuildsProps) {
           />
         )}
         showsVerticalScrollIndicator={false}
-        ItemSeparatorComponent={() => <ListDivider />}
+        contentContainerStyle={{ paddingBottom: 69 }}
+        ItemSeparatorComponent={() => <ListDivider isCentered />}
         style={styles.guilds}
       />
     </View>
