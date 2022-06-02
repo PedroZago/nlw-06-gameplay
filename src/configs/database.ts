@@ -1,0 +1,11 @@
+import {
+  DATABASE_NAME,
+} from '@env';
+
+const COLLECTION_USERS = `${DATABASE_NAME}:users`;
+const COLLECTION_APPOINTMENTS = `${DATABASE_NAME}:appointments`;
+
+export {
+  COLLECTION_USERS,
+  COLLECTION_APPOINTMENTS,
+};
